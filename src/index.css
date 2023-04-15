@@ -1,0 +1,10 @@
+
+
+.recipeDiv{
+    overflow-y:scroll;
+}
+
+.recipeCard{
+    height:25%;
+}
+

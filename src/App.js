@@ -1,38 +1,59 @@
-import {Route, Routes } from 'react-router-dom'
+
 import { MainPage } from './components/mainPage.js'
+import {RecipeNavbar} from './components/RecipeNavbar.js'
 import { Breakfast } from './components/Breakfast'
-import Container from 'react-bootstrap/Container'
-import Navbar from 'react-bootstrap/Navbar'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import Nav from 'react-bootstrap/Nav'
+import { Lunch } from './components/Lunch.js'
+import { Dinner } from './components/Dinner.js'
+import { Snacks } from './components/Snacks.js'
+import {Route, Routes } from 'react-router-dom'
+import {recipesApi} from './components/RecipeApi.js';
+import { useState, useEffect} from 'react';
+import {RecipeDetailsPage} from './components/RecipeDetailsPage.js';
 
 
 export default function App(){
+
+  const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        fetchRecipes();
+    }, []); 
+
+    const fetchRecipes = async() => {
+        const addRecipe = await recipesApi.get();
+        setRecipes(addRecipe)
+    };
+
+    const createRecipe = async(recipe) => {
+        await recipesApi.post(recipe);
+        fetchRecipes();
+    };
+
+    const updateRecipe = async(recipes) =>{
+        await recipesApi.put(recipes);
+        fetchRecipes();
+    }
+
+    const deleteRecipe = async(id) => {
+        await recipesApi.delete(id)
+        fetchRecipes();
+    }
+
+
   return(
     <div>
-      <div>
-        <Navbar bg="light" expand="sm">
-            <Container>
-              <Navbar.Brand href="localhost:3000/">What Should I Cook Today?</Navbar.Brand>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link href="localhost:3000/">Home</Nav.Link>
-                  <Nav.Link href="#link">Link</Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
-
-      </div>
-      <div>
-        <Routes>
-          <Route path = '/' element ={ <MainPage /> } />
-          <Route path = '/breakfast' element ={< Breakfast />} />
-
-        </Routes>
-      </div>
-    </div>
+            <div>
+                < RecipeNavbar/>
+            </div>
+            <Routes>
+              <Route path = '/' element ={<MainPage />} />
+              <Route path = '/breakfast' element ={< Breakfast recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} />} />
+              <Route path = '/lunch' element ={ <Lunch /> } />
+              <Route path = '/dinner' element ={< Dinner />} />
+              <Route path = '/snacks' element ={< Snacks />} />
+              <Route path = '/:mealtype/recipes/:id' element = {<RecipeDetailsPage recipes = {recipes} />} />
+            </Routes>
+        </div>
   )
 }
 
