@@ -2,33 +2,22 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import{LinkContainer} from 'react-router-bootstrap'
+import {Link} from 'react-router-dom'
 
 
  export function RecipeNavbar() {
     return(
-        <Navbar bg="secondary" className="me-auto">
+        <Navbar bg="info" className="me-auto">
         <Container fluid>
-          <LinkContainer to='/'>
-            <Navbar.Brand>What Should I Cook Today?</Navbar.Brand> 
-          </LinkContainer>
+            <Navbar.Brand as={Link} to='/'>What Should I Cook Today?</Navbar.Brand> 
           <Navbar.Toggle  />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link> 
-              </LinkContainer>
-              <LinkContainer to="/breakfast">
-                <Nav.Link>Breakfast</Nav.Link> 
-              </LinkContainer>
-              <LinkContainer to="/lunch">
-                <Nav.Link>Lunch</Nav.Link> 
-              </LinkContainer>
-              <LinkContainer to="/dinner">
-                <Nav.Link>Dinner</Nav.Link> 
-              </LinkContainer>
-              <LinkContainer to="/snacks">
-                <Nav.Link>Snacks</Nav.Link> 
-              </LinkContainer>
+                <Nav.Link as={Link} to='/'>Home</Nav.Link> 
+                <Nav.Link as={Link} to='/breakfast'>Breakfast</Nav.Link> 
+                <Nav.Link as={Link} to='/lunch'>Lunch</Nav.Link> 
+                <Nav.Link as={Link} to='/dinner'>Dinner</Nav.Link> 
+                <Nav.Link as={Link} to='/sides'>Sides</Nav.Link> 
             </Nav>
           </Navbar.Collapse>
         </Container>

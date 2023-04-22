@@ -2,16 +2,31 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import {RecipeList} from './recipeList.js';
+import {RecipeForm} from './recipeForm.js';
+import Card from 'react-bootstrap/Card';
 
-export function Lunch(){
+export function Lunch({ recipes, createRecipe, fetchRecipes}){
     return(
-        <Container className ='vh-100 d-flex flex-column'>
-                <Row className = 'h-100'>
-                    <Col className = 'd-flex justify-content-center align-items-center'>Recipe Form</Col>
-                    <Col className = 'd-flex justify-content-center align-items-center'>
-                        <h1>Lunch Recipes</h1>
-                    </Col>
+        <div>
+            <div>
+                <h2 className='d-flex justify-content-center'>Lunch</h2>
+            </div>
+            <Container className ='vh-100 d-flex'>
+                <Row xs={1} md={2} className=" w-100 h-100">
+                        <Col>
+                            <Card className = 'h-100'>
+                            < RecipeForm createRecipe = {createRecipe} fetchRecipes = {fetchRecipes} />
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card className = 'h-100'>
+                                < RecipeList recipes ={recipes} mealType = 'Lunch' />
+                            </Card>
+                        </Col>
+                        
                 </Row>
-          </Container>
+            </Container>
+        </div>
     )
 }

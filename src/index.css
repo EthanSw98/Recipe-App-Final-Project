@@ -1,10 +1,14 @@
 
 
 .recipeDiv{
-    overflow-y:scroll;
+    height:75%;
+    overflow-y:auto;
 }
 
 .recipeCard{
     height:25%;
 }
 
+.formContainer{
+    overflow-y:auto;
+}

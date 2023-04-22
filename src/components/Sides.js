@@ -1,4 +1,3 @@
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -6,14 +5,14 @@ import {RecipeList} from './recipeList.js';
 import {RecipeForm} from './recipeForm.js';
 import Card from 'react-bootstrap/Card';
 
-export function Dinner({ recipes, createRecipe, fetchRecipes}){
+export function Sides({ recipes, createRecipe, fetchRecipes}){
     return(
     <div>
         <div>
-            <h2 className='d-flex justify-content-center'>Dinner</h2>
+            <h2 className='d-flex justify-content-center'>Sides</h2>
         </div>
         <Container className ='vh-100 d-flex'>
-            <Row  className=" w-100 h-100">
+            <Row xs={1} md={2} className=" w-100 h-100">
                     <Col>
                         <Card className = 'h-100'>
                         < RecipeForm createRecipe = {createRecipe} fetchRecipes = {fetchRecipes} />
@@ -21,7 +20,7 @@ export function Dinner({ recipes, createRecipe, fetchRecipes}){
                     </Col>
                     <Col>
                         <Card className = 'h-100'>
-                            < RecipeList recipes ={recipes} mealType = 'Dinner' />
+                            < RecipeList recipes ={recipes} mealType = 'Sides' />
                         </Card>
                     </Col>
                     
