@@ -19,7 +19,7 @@ import { faCarrot } from '@fortawesome/free-solid-svg-icons'
 
 export default function App(){
 
-  const navigate = useNavigate();
+  const navigate = useNavigate();    // will allow to navigate back to homepage after delete is called
 
 
   const [recipes, setRecipes] = useState([]);
@@ -49,10 +49,10 @@ export default function App(){
         navigate('/');
     }
 
-    const bacon = <FontAwesomeIcon icon={faBacon} />
+    const bacon = <FontAwesomeIcon icon={faBacon} />  
     const burger = <FontAwesomeIcon icon={faBurger} />
     const pizza = <FontAwesomeIcon icon={faPizzaSlice} />
-    const veggie = <FontAwesomeIcon icon={faCarrot} />
+    const veggie = <FontAwesomeIcon icon={faCarrot} />   //different icons set as props 
 
 
 
@@ -66,7 +66,8 @@ export default function App(){
               <Route path = '/dinner' element ={< Dinner recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} pizza = {pizza} />} />
               <Route path = '/sides' element ={< Sides recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} veggie = {veggie} />} />
               <Route path = '/:id' element = {<RecipeDetailsPage recipes = {recipes} fetchRecipes = {fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} />} />
-            </Routes>
+              //this last route will be accessed when a link directs to the id of a recipe
+            </Routes> 
             </div>
   )
 }

@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import {UpdateForm} from './updateForm.js';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
 export function RecipeDetailsPage({ recipes, deleteRecipe, updateRecipe, fetchRecipes }) {
 
-    let recipeId = useParams()
+    let recipeId = useParams()  //this takes the params, the link sent us to the recipes id
 
-    let rId = recipeId.id
+    let rId = recipeId.id  //this sets the returned params from a string to a number
 
-    const recipe =  recipes.find(r => r.id === rId); 
+    const recipe =  recipes.find(r => r.id === rId); // this returns the recipe that matches the ID in the params
 
-    if (!recipe) return <div>Loading...</div>
+    if (!recipe) return <div>Loading...</div>  //this makes sure if the useEffect isnt responding in time, for the page to wait
 
-    const ingredientArray = recipe.ingredients.split(',');
+    const ingredientArray = recipe.ingredients.split(',');  // this takes the string from the ingredients input, and it turns it into an array 
 
     let ingredientKey = 0;
 
@@ -42,7 +39,7 @@ export function RecipeDetailsPage({ recipes, deleteRecipe, updateRecipe, fetchRe
 
 
     return (
-        <Container className ='vh-100 d-flex flex-column'>
+        <Container className ='vh-100 d-flex flex-column custContainer'>
             <Card className='bg-dark'>
                 <Card.Header className = 'bg-info d-flex justify-content-center '>
                     <h1>{recipe.recipeName}</h1>
