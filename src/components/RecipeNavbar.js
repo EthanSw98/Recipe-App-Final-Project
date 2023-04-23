@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 
  export function RecipeNavbar() {
     return(
-        <Navbar bg="info" className="me-auto">
+        <Navbar bg="primary" text='dark' className="me-auto">
         <Container fluid>
             <Navbar.Brand as={Link} to='/'>What Should I Cook Today?</Navbar.Brand> 
           <Navbar.Toggle  />

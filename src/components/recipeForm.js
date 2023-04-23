@@ -23,8 +23,8 @@ export function RecipeForm({recipes, fetchRecipes, createRecipe}) {
     }
     return(
 
-        <Card>
-            <Card.Header as="h5">Add Your Recipe </Card.Header>
+        <Card className='bg-secondary'>
+            <Card.Header className='bg-info' as="h5">Add Your Recipe </Card.Header>
             <Card.Body>
                 <Form onSubmit = {handleSubmit}>
                  <Form.Group className="mb-3" >

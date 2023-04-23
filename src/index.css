@@ -9,6 +9,21 @@
     height:25%;
 }
 
-.formContainer{
+
+.custContainer{
+    border:solid;
+    border-width:2px;
     overflow-y:auto;
+}
+
+.body{
+    background-image: url('https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg');
+    height:100%;
+    background-position:center;
+    background-size:cover;
+    text-decoration:none;
+}
+
+.recipePic{
+    max-height:100%;
 }

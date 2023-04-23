@@ -6,17 +6,17 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import {UpdateForm} from './updateForm.js';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
 
 export function RecipeDetailsPage({ recipes, deleteRecipe, updateRecipe, fetchRecipes }) {
 
     let recipeId = useParams()
+
     let rId = recipeId.id
 
     const recipe =  recipes.find(r => r.id === rId); 
 
-    
-
-
+    if (!recipe) return <div>Loading...</div>
 
     const ingredientArray = recipe.ingredients.split(',');
 
@@ -43,63 +43,50 @@ export function RecipeDetailsPage({ recipes, deleteRecipe, updateRecipe, fetchRe
 
     return (
         <Container className ='vh-100 d-flex flex-column'>
-            <Row>
-                <div className = ' card d-flex justify-content-center align-items-center bg-primary'>
-                    <h1>{recipe.recipeName }</h1>
-                </div>
-            </Row>
-            <Row className =' h-100'>
-                    <Col className=' card'>
-                        <Row className = 'card d-flex justify-content-center'>
-                            <div className = 'd-flex justify-content-center'>
-                                <h4>Whats for {recipe.mealType} today?</h4>   
-                            </div>
-                        </Row>
-                        <Row>
-                            <h2>Ingredients:</h2>
+            <Card className='bg-dark'>
+                <Card.Header className = 'bg-info d-flex justify-content-center '>
+                    <h1>{recipe.recipeName}</h1>
+                </Card.Header>
+                <Row className =' h-100'>
+                    <Col className=' bg-dark card custContainer'>
+                        <Card >
+                             <Card.Header className='bg-info d-flex justify-content-center'>Ingredients:</Card.Header>
                             <ListGroup>
                             {ingredientArray.map((ingredient) => {
                                 return(
                                     <ListGroup.Item key = {ingredientKey += 1}>{ingredient}</ListGroup.Item>
                                 )
                             })}
-                            </ListGroup>
-                        </Row>
-                        <Row className = 'card '>
+                            </ListGroup>   
+                        </Card>
+                        <Card className = 'mt-5'>
+                            <Card.Header className='bg-info d-flex justify-content-center'>Preperation Instructions:</Card.Header>
+                            <p>{recipe.instructions}</p>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className = 'h-50 bg-dark'>
+                            <Card.Img className='img-fluid recipePic' src ={recipe.img} alt=""></Card.Img>
+                        </Card>
+                        <Card >
+                            <Card.Header className='bg-info d-flex justify-content-center'>Update This Recipe:</Card.Header>
                             <Form onSubmit = {handleSubmit}>
                                 <Form.Group className="mb-3" >
-                                    <Form.Label>Enter Ingredients Here: Please seperate ingredients with a space.</Form.Label>
+                                    <Form.Label>Enter New Ingredients (Please seperate ingredients with a space)</Form.Label>
                                     <Form.Control id="ingredients" as="textarea" rows={3} />
                                 </Form.Group>
                                 <Form.Group className="mb-3" >
-                                    <Form.Label>Enter Instructions Here</Form.Label>
+                                    <Form.Label>Enter New Instructions</Form.Label>
                                     <Form.Control id="instructions" as="textarea" rows={3} />
                                 </Form.Group>
                                 <button type='submit'>Submit</button>  
-                            </Form>
-                        </Row>
+                                <button type = 'button' onClick = {() => deleteRecipe(recipe.id)}>Delete This Recipe</button>
+                            </Form> 
+                        </Card>
                     </Col>
-                    <Col>
-                        <Row className = 'card h-50'>
-                            <Image className ='h-100' src ={recipe.img} alt=""></Image>
-                        </Row>
-                        <Row>
-                            <h2>Preperation Instructions:</h2>
-                            <h5>{recipe.instructions}</h5>
-                            <button type = 'button' onClick = {() => deleteRecipe(recipe.id)}>Delete</button>
-                        </Row>
-                    </Col>
-            </Row>
-
-            {/* <Row>
-                <Col>
-                    <h4>{recipe.mealType}</h4>
-                    <p>{recipe.ingredients}</p>
-                </Col>
-                <Col>
-                <p>{recipe.instructions}</p>
-                </Col>
-            </Row> */}
+                </Row>
+            </Card>
         </Container>
+
     )
 }

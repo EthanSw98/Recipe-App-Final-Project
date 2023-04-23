@@ -20,7 +20,7 @@ export function UpdateForm( rId, fetchRecipes,updateRecipe) {
     return(
             <Form onSubmit = { e => handleSubmit(e)}>
                 <Form.Group className="mb-3" >
-                    <Form.Label>Enter Ingredients Here: Please put 1 space between ingredients.</Form.Label>
+                    <Form.Label>Enter Ingredients Here: Please put a comma between ingredients.</Form.Label>
                     <Form.Control id="ingredients" as="textarea" rows={3} />
                 </Form.Group>
                 <Form.Group className="mb-3" >

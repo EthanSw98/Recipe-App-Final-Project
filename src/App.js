@@ -10,6 +10,11 @@ import {recipesApi} from './components/RecipeApi.js';
 import { useState, useEffect} from 'react';
 import {RecipeDetailsPage} from './components/RecipeDetailsPage.js';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBacon } from '@fortawesome/free-solid-svg-icons';
+import { faBurger } from '@fortawesome/free-solid-svg-icons'
+import { faPizzaSlice  } from '@fortawesome/free-solid-svg-icons'
+import { faCarrot } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function App(){
@@ -44,21 +49,25 @@ export default function App(){
         navigate('/');
     }
 
+    const bacon = <FontAwesomeIcon icon={faBacon} />
+    const burger = <FontAwesomeIcon icon={faBurger} />
+    const pizza = <FontAwesomeIcon icon={faPizzaSlice} />
+    const veggie = <FontAwesomeIcon icon={faCarrot} />
+
+
 
   return(
-    <div>
-            <div>
-                < RecipeNavbar/>
-            </div>
-            <Routes>
-              <Route path = '/' element ={<MainPage recipes = {recipes}/>} />
-              <Route path = '/breakfast' element ={< Breakfast recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} />} />
-              <Route path = '/lunch' element ={ <Lunch recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} /> } />
-              <Route path = '/dinner' element ={< Dinner recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} />} />
-              <Route path = '/sides' element ={< Sides recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} />} />
+            <div className = "body">
+              < RecipeNavbar/>
+              <Routes>
+              <Route path = '/' element ={<MainPage recipes = {recipes} bacon = {bacon} burger = {burger} pizza = {pizza} veggie = {veggie}/>} />
+              <Route path = '/breakfast' element ={< Breakfast recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} bacon = {bacon} />} />
+              <Route path = '/lunch' element ={ <Lunch recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} burger = {burger}/> } />
+              <Route path = '/dinner' element ={< Dinner recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} pizza = {pizza} />} />
+              <Route path = '/sides' element ={< Sides recipes = {recipes} fetchRecipes ={fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} createRecipe ={createRecipe} veggie = {veggie} />} />
               <Route path = '/:id' element = {<RecipeDetailsPage recipes = {recipes} fetchRecipes = {fetchRecipes} updateRecipe ={updateRecipe} deleteRecipe ={deleteRecipe} />} />
             </Routes>
-        </div>
+            </div>
   )
 }
 
