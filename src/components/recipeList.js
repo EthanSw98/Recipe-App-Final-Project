@@ -8,9 +8,9 @@ export function RecipeList({recipes,mealType,icon}) {
 
     return(
 
-        <Card className = ' text-success border-primary recipeDiv'>
+        <Card className = ' text-success border-primary h-75'>
             <Card.Header className='bg-info text-dark d-flex justify-content-center text-decoration-none' as={Link} to ={`/${mealType}`}><h4>{icon}{mealType} Recipes{icon}</h4> </Card.Header>
-            <Card.Body className='bg-dark '>
+            <Card.Body className='bg-dark custContainer'>
                 {recipes.map((recipe) => {
                     if(recipe.mealType === mealType){  //this if statement returns only the recipes with the mealtype that is passed in
                         return(
